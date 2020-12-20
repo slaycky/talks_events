@@ -1,10 +1,11 @@
 const { speakersService } = require('../services');
+const { storage } = require('../config/env');
 
 module.exports = {
   list: async (req, res) => {
     const { highlighted } = req.query;
-    console.log('oiii', highlighted);
-    const response = await speakersService.list({ highlighted });
+    let filter = highlighted ? { highlighted } : {};
+    const response = await speakersService.list(filter);
 
     if (!response || response.data.length === 0) {
       return res.status(204).end();
@@ -25,7 +26,10 @@ module.exports = {
 
     return res.status(200).json(response);
   },
-
+  avatar: (req, res) => {
+    const { filename } = req.file;
+    return res.status(200).json({ avatar: `${storage}/${filename}` });
+  },
   update: async (req, res) => {
     const {
       params: { id },

@@ -7,6 +7,11 @@ const speakerSchema = mongoose.Schema(
       required: true,
       trim: true,
     },
+    highlighted: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
     jobTitle: {
       type: String,
       required: true,

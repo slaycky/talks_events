@@ -6,6 +6,7 @@ dotenv.config({ path: path.join(__dirname, '../../../.env') });
 module.exports = {
   env: process.env.NODE_ENV,
   port: process.env.PORT,
+  storage: process.env.STORAGE,
   version: 'v1',
   corsOptions: {
     origin: '*',

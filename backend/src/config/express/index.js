@@ -2,6 +2,7 @@ const express = require('express');
 const helmet = require('helmet');
 const xss = require('xss-clean');
 const cors = require('cors');
+
 require('dotenv').config();
 
 const database = require('../database/mongodb');
@@ -19,6 +20,7 @@ app.set('port', port || 3000);
 app.use(helmet());
 app.use(cors(corsOptions));
 app.use(express.json());
+app.use('/static', express.static(`${process.cwd()}/public`));
 app.use(
   express.urlencoded({
     extended: true,
@@ -30,7 +32,7 @@ Object.keys(routes).forEach((key) => app.use(`/api/${version}/${key}`, routes[ke
 Object.keys(routes).forEach((key) => console.log(`/api/${version}/${key}`));
 
 app.use((req, res, next) => {
-  next(new ApplicationError(404, 'Resource Not Found Try Again'));
+  res.status(404).json({ error: 'Resource Not Found Try Again' });
 });
 
 app.use(errorTracker);
