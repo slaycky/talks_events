@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Tokens from 'assets/tokens';
 
 const Container = styled('div')({
   paddingRight: '15px',

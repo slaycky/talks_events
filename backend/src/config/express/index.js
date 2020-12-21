@@ -29,7 +29,6 @@ app.use(
 app.use(xss());
 
 Object.keys(routes).forEach((key) => app.use(`/api/${version}/${key}`, routes[key]));
-Object.keys(routes).forEach((key) => console.log(`/api/${version}/${key}`));
 
 app.use((req, res, next) => {
   res.status(404).json({ error: 'Resource Not Found Try Again' });

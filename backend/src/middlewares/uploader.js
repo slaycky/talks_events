@@ -5,7 +5,6 @@ const storage = multer.diskStorage({
     cb(null, './public/images/files');
   },
   filename: (req, file, cb) => {
-    console.log(file);
     let filetype = '';
     if (file.mimetype === 'image/gif') {
       filetype = 'gif';

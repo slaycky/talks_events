@@ -2,7 +2,6 @@ const yup = require('yup');
 const { ApplicationError } = require('../utils');
 
 module.exports = (schema) => async (req, res, next) => {
-  console.log('req', req);
   const requestObject = Object.fromEntries(
     Object.entries(req).filter(([key]) => ['query', 'params', 'body'].includes(key)),
   );

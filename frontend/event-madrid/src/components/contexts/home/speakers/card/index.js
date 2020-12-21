@@ -3,7 +3,6 @@ import React from 'react';
 import * as S from './card.styles';
 
 const Card = ({ data }) => {
-  console.log('data', data);
   return (
     <S.CardBody>
       <S.BoxAvatar>

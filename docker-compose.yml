@@ -7,3 +7,48 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
+    environment:
+      REACT_APP_API: http://localhost:3001
+    networks:
+      - net
+  database:
+    image: mongo:latest
+    container_name: talks-database
+    build:
+      context: .
+      target: mongo
+      dockerfile: docker/db/Dockerfile
+    networks:
+      - net
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb_data_container:/data/db
+  api:
+    container_name: api-talks
+    build:
+      context: .
+      target: development
+      dockerfile: docker/api/Dockerfile
+    volumes:
+      - .:/api
+    ports:
+      - 3001:3001
+    command: npm run start:dev
+    environment:
+      NODE_ENV: development
+      PORT: 3001
+      STORAGE: http://localhost:3001/static/images
+      DB_NAME: talks-development
+      DB_HOST: database
+      DB_PORT: 27017
+      DB_USER:
+      DB_PASSWORD:
+    networks:
+      - net
+    depends_on:
+      - database
+networks:
+  net:
+volumes:
+  mongodb_data_container:

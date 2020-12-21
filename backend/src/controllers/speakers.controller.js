@@ -28,7 +28,7 @@ module.exports = {
   },
   avatar: (req, res) => {
     const { filename } = req.file;
-    return res.status(200).json({ avatar: `${storage}/${filename}` });
+    return res.status(200).json({ avatar: `${storage}/files/${filename}` });
   },
   update: async (req, res) => {
     const {

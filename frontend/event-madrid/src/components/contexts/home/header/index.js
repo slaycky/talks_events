@@ -8,7 +8,6 @@ import Container from 'components/structure/container';
 import Content from 'components/structure/content';
 
 const Header = (props) => {
-  console.log('PRPS', props);
   return (
     <Section bg="orange">
       <S.Background>

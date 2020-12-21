@@ -1,5 +1,5 @@
 import React from 'react';
 
-const NotFound = () => <>Nao enconttrado</>;
+const NotFound = () => <>Nao encontrado</>;
 
 export default NotFound;
